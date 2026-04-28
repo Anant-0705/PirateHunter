@@ -1,0 +1,109 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "piratehunt"
+version = "0.1.0"
+description = "Real-time live-stream piracy detection system for sports broadcasts"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [
+    {name = "PirateHunt Team"}
+]
+readme = "README.md"
+keywords = ["piracy", "detection", "fingerprinting", "audio", "visual", "sports"]
+
+dependencies = [
+    "fastapi>=0.104.0",
+    "pydantic>=2.5.0",
+    "pydantic-settings>=2.1.0",
+    "uvicorn[standard]>=0.24.0",
+    "chromaprint>=0.5",
+    "Pillow>=11.0.0",
+    "imagehash>=4.3.1",
+    "faiss-cpu>=1.9.0",
+    "numpy>=1.24.0",
+    "python-dotenv>=1.0.0",
+    "sqlalchemy>=2.0.0",
+    "alembic>=1.13.0",
+    "asyncpg>=0.29.0",
+    "psycopg2-binary>=2.9.0",
+    "pgvector>=0.2.0",
+    "redis>=5.0.0",
+    "google-generativeai>=0.3.0",
+    "jinja2>=3.1.0",
+    "httpx>=0.24.0",
+    "python-whois>=0.8.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==7.4.3",
+    "pytest-asyncio==0.21.1",
+    "ruff==0.1.8",
+    "black==23.12.1",
+]
+
+[project.scripts]
+piratehunt = "piratehunt.cli:main"
+piratehunt-api = "piratehunt.api.main:main"
+piratehunt-worker = "piratehunt.cli:run_worker"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/piratehunt"]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "C",    # flake8-comprehensions
+    "B",    # flake8-bugbear
+]
+ignore = [
+    "E501",  # line too long (black handles this)
+]
+exclude = [
+    ".git",
+    "__pycache__",
+    "dist",
+    "build",
+]
+
+[tool.pytest.ini_options]
+minversion = "7.4"
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+addopts = "-v --strict-markers"
+markers = [
+    "slow: marks tests as slow",
+    "integration: marks tests as integration tests",
+    "asyncio: marks tests as asyncio tests",
+]
+
+[tool.ruff.isort]
+known-first-party = ["piratehunt"]

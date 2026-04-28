@@ -1,0 +1,57 @@
+[
+  {
+    "name": "IPL Live HD 2026",
+    "source_url": "https://t.me/fake_ipl_live_hd_2026",
+    "title": "IPL cricket live HD stream",
+    "description": "Unofficial live cricket stream mirrors for IPL fans",
+    "keywords": ["ipl", "cricket", "live"],
+    "language": "en",
+    "channel_members": 48200,
+    "is_pirate": true,
+    "confidence_hint": 0.88
+  },
+  {
+    "name": "क्रिकेट लाइव धमाका",
+    "source_url": "https://t.me/fake_cricket_live_hindi",
+    "title": "हिंदी क्रिकेट लाइव IPL",
+    "description": "Mock Hindi channel sharing unauthorized cricket streams",
+    "keywords": ["ipl", "cricket", "क्रिकेट"],
+    "language": "hi",
+    "channel_members": 21100,
+    "is_pirate": true,
+    "confidence_hint": 0.82
+  },
+  {
+    "name": "Official Cricket News",
+    "source_url": "https://t.me/mock_official_cricket_news",
+    "title": "Official cricket score updates",
+    "description": "News and highlights only, no video streams",
+    "keywords": ["ipl", "cricket", "news"],
+    "language": "en",
+    "channel_members": 92000,
+    "is_pirate": false,
+    "confidence_hint": 0.35
+  },
+  {
+    "name": "Shared Mirror Drop",
+    "source_url": "https://stream.mock/shared-ipl-hd",
+    "title": "IPL HD mirror link drop",
+    "description": "Same fake source appears across multiple platforms",
+    "keywords": ["ipl", "live"],
+    "language": "en",
+    "channel_members": 12800,
+    "is_pirate": true,
+    "confidence_hint": 0.75
+  },
+  {
+    "name": "Asia Cup Archive",
+    "source_url": "https://t.me/mock_asia_cup_archive",
+    "title": "Old cricket clips archive",
+    "description": "Historical clips and scorecards",
+    "keywords": ["cricket", "archive"],
+    "language": "en",
+    "channel_members": 4300,
+    "is_pirate": false,
+    "confidence_hint": 0.3
+  }
+]

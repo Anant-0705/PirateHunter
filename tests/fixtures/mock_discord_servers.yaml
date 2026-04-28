@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Mock Cricket HD",
+    "source_url": "https://discord.gg/mock-cricket-hd",
+    "title": "IPL watch party with HD stream links",
+    "description": "Discord server posting mock live cricket links",
+    "keywords": ["ipl", "cricket", "live"],
+    "language": "en",
+    "member_count": 18300,
+    "is_pirate": true,
+    "confidence_hint": 0.79
+  },
+  {
+    "name": "বাংলা ক্রিকেট লাইভ",
+    "source_url": "https://discord.gg/mock-bangla-cricket-live",
+    "title": "বাংলা IPL cricket live links",
+    "description": "Mock Bengali community sharing stream rooms",
+    "keywords": ["ipl", "cricket", "ক্রিকেট"],
+    "language": "bn",
+    "member_count": 7900,
+    "is_pirate": true,
+    "confidence_hint": 0.77
+  },
+  {
+    "name": "Shared Mirror Drop Discord",
+    "source_url": "https://stream.mock/shared-ipl-hd",
+    "title": "Shared IPL mirror from Discord",
+    "description": "Duplicate fake source URL for dedupe tests",
+    "keywords": ["ipl", "live"],
+    "language": "en",
+    "member_count": 5200,
+    "is_pirate": true,
+    "confidence_hint": 0.73
+  },
+  {
+    "name": "Fantasy Cricket Lounge",
+    "source_url": "https://discord.gg/mock-fantasy-cricket",
+    "title": "IPL fantasy picks and score discussion",
+    "description": "No video streams, just fantasy sports chatter",
+    "keywords": ["ipl", "cricket", "fantasy"],
+    "language": "en",
+    "member_count": 42100,
+    "is_pirate": false,
+    "confidence_hint": 0.32
+  },
+  {
+    "name": "Sports Meme Server",
+    "source_url": "https://discord.gg/mock-sports-memes",
+    "title": "Cricket memes after match",
+    "description": "Harmless meme server",
+    "keywords": ["cricket", "memes"],
+    "language": "en",
+    "member_count": 6100,
+    "is_pirate": false,
+    "confidence_hint": 0.3
+  }
+]

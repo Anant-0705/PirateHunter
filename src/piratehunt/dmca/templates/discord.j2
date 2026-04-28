@@ -1,0 +1,31 @@
+DISCORD DMCA TAKEDOWN NOTICE
+
+To: Discord Inc. Abuse Team
+Subject: DMCA Notice - Copyright Infringement in {{ infringing_url }}
+
+INFRINGING CONTENT:
+Server/Channel: {{ candidate_metadata.get('server_name', 'Unknown') }}
+Channel URL: {{ infringing_url }}
+Posted: {{ discovered_at }}
+User: {{ candidate_metadata.get('posted_by', 'Unknown') }}
+
+COPYRIGHT WORK INFRINGED:
+Title: {{ match_name }}
+Owner: {{ rights_holder_name }}
+Type: Sports Broadcast
+
+EVIDENCE:
+- Audio Match Confidence: {{ audio_score }}%
+- Visual Match Confidence: {{ visual_score }}%
+- Overall Confidence: {{ combined_score }}%
+
+DMCA DECLARATION (17 U.S.C. § 512(c)(3)):
+I have a good faith belief that the above-described use is unauthorized. I am authorized to act on behalf of {{ rights_holder_name }} and declare under penalty of perjury that the information herein is accurate.
+
+CONTACT:
+{{ rights_holder_name }}
+{{ rights_holder_email }}
+{{ rights_holder_address }}
+
+Agent: {{ authorized_agent }}
+Date: {{ submitted_at }}

@@ -1,0 +1,34 @@
+REDDIT DMCA NOTICE
+
+To: Reddit, Inc. Legal Department
+Subject: DMCA Takedown Notice - Infringing Sports Content
+
+NOTICE OF INFRINGING ACTIVITY:
+
+Infringing Content URL: {{ infringing_url }}
+Subreddit: {{ candidate_metadata.get('subreddit', 'Unknown') }}
+Post Title: {{ candidate_title }}
+Posted: {{ discovered_at }}
+Author: {{ candidate_metadata.get('author', 'Unknown') }}
+
+COPYRIGHTED WORK:
+Work: {{ match_name }}
+Owner: {{ rights_holder_name }}
+Content: Sports broadcast (unauthorized rebroadcast)
+
+FINGERPRINT EVIDENCE:
+Audio Fingerprint Score: {{ audio_score }}%
+Visual Fingerprint Score: {{ visual_score }}%
+Combined Confidence: {{ combined_score }}%
+Verification Method: Forensic fingerprinting analysis
+
+DMCA STATEMENT (17 U.S.C. § 512(c)):
+I have a good faith belief that the material is not authorized by the copyright owner. I declare under penalty of perjury that I am authorized to act on behalf of {{ rights_holder_name }} and that the information is accurate.
+
+COPYRIGHT HOLDER DETAILS:
+{{ rights_holder_name }}
+{{ rights_holder_email }}
+{{ rights_holder_address }}
+Representative: {{ authorized_agent }}
+
+Submitted: {{ submitted_at }}

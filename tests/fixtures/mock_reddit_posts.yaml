@@ -1,0 +1,62 @@
+[
+  {
+    "name": "r/mockcricketstreams",
+    "source_url": "https://reddit.com/r/mockcricketstreams/comments/fake_ipl_final_hd",
+    "title": "IPL final live stream mirror list",
+    "description": "Mock post aggregating unauthorized mirror links",
+    "keywords": ["ipl", "cricket", "live"],
+    "language": "en",
+    "upvotes": 812,
+    "comment_count": 146,
+    "is_pirate": true,
+    "confidence_hint": 0.84
+  },
+  {
+    "name": "r/cricket",
+    "source_url": "https://reddit.com/r/cricket/comments/mock_match_thread",
+    "title": "Official IPL match thread",
+    "description": "Discussion thread with score updates only",
+    "keywords": ["ipl", "cricket", "thread"],
+    "language": "en",
+    "upvotes": 4200,
+    "comment_count": 1900,
+    "is_pirate": false,
+    "confidence_hint": 0.33
+  },
+  {
+    "name": "r/desistreams",
+    "source_url": "https://reddit.com/r/desistreams/comments/mock_hindi_ipl",
+    "title": "हिंदी IPL stream request",
+    "description": "Mock thread asking for Hindi commentary stream",
+    "keywords": ["ipl", "stream", "हिंदी"],
+    "language": "hi",
+    "upvotes": 231,
+    "comment_count": 54,
+    "is_pirate": true,
+    "confidence_hint": 0.7
+  },
+  {
+    "name": "r/sportsbiz",
+    "source_url": "https://reddit.com/r/sportsbiz/comments/mock_rights_news",
+    "title": "IPL broadcast rights analysis",
+    "description": "Business discussion about sports media rights",
+    "keywords": ["ipl", "broadcast", "rights"],
+    "language": "en",
+    "upvotes": 130,
+    "comment_count": 22,
+    "is_pirate": false,
+    "confidence_hint": 0.31
+  },
+  {
+    "name": "r/banglasports",
+    "source_url": "https://reddit.com/r/banglasports/comments/mock_cricket_live",
+    "title": "বাংলা ক্রিকেট live link",
+    "description": "Mock Bengali post with suspicious live link",
+    "keywords": ["cricket", "live", "বাংলা"],
+    "language": "bn",
+    "upvotes": 93,
+    "comment_count": 17,
+    "is_pirate": true,
+    "confidence_hint": 0.68
+  }
+]

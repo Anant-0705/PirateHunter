@@ -1,0 +1,35 @@
+TWITTER DMCA TAKEDOWN NOTICE
+
+To: Twitter, Inc. Legal / Abuse Team
+Subject: DMCA Notice - Copyright Infringement
+
+INFRINGING CONTENT:
+Tweet URL: {{ infringing_url }}
+Tweet ID: {{ candidate_metadata.get('tweet_id', 'Unknown') }}
+Posted by: {{ candidate_metadata.get('author_handle', 'Unknown') }}
+Posted: {{ discovered_at }}
+Content Description: {{ candidate_title }}
+
+COPYRIGHTED WORK ALLEGEDLY INFRINGED:
+Title: {{ match_name }}
+Copyright Owner: {{ rights_holder_name }}
+Category: Sports Broadcast
+
+VERIFICATION EVIDENCE:
+Audio Fingerprint Confidence: {{ audio_score }}%
+Visual Fingerprint Confidence: {{ visual_score }}%
+Forensic Analysis Confidence: {{ combined_score }}%
+
+DMCA DECLARATION:
+Pursuant to 17 U.S.C. § 512(c)(3), I declare under penalty of perjury that:
+- I have a good faith belief the material is unauthorized
+- I am authorized to represent {{ rights_holder_name }}
+- The above information is true and accurate
+
+COPYRIGHT HOLDER INFORMATION:
+{{ rights_holder_name }}
+{{ rights_holder_email }}
+{{ rights_holder_address }}
+Authorized Agent: {{ authorized_agent }}
+
+Date Submitted: {{ submitted_at }}

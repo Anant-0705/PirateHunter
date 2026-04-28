@@ -1,0 +1,36 @@
+CLOUDFLARE DMCA TAKEDOWN NOTICE
+
+To: Cloudflare Abuse Team
+Subject: DMCA Notice - Infringing Content Hosted via Cloudflare
+
+INFRINGING CONTENT DETAILS:
+URL: {{ infringing_url }}
+Domain: {{ candidate_metadata.get('domain', 'Unknown') }}
+Hosting Provider: Cloudflare
+Content Type: {{ candidate_title }}
+First Noticed: {{ discovered_at }}
+
+COPYRIGHTED WORK:
+Title: {{ match_name }}
+Copyright Holder: {{ rights_holder_name }}
+Type: Sports Broadcast Content
+
+INFRINGEMENT EVIDENCE:
+Audio Fingerprint Match: {{ audio_score }}%
+Visual Fingerprint Match: {{ visual_score }}%
+Overall Match Confidence: {{ combined_score }}%
+Analysis Type: Forensic fingerprinting verification
+
+DMCA NOTICE (17 U.S.C. § 512):
+Under penalty of perjury, I declare that:
+- I have a good faith belief the content is infringing
+- I am authorized to act for {{ rights_holder_name }}
+- The information provided is accurate and complete
+
+CLAIMANT INFORMATION:
+Company: {{ rights_holder_name }}
+Email: {{ rights_holder_email }}
+Address: {{ rights_holder_address }}
+Contact: {{ authorized_agent }}
+
+Certified under penalty of perjury this {{ submitted_at }}

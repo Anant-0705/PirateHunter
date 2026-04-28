@@ -1,0 +1,31 @@
+{
+  "candidate_id": "28721f89-d8ea-4a43-92a9-806c23db03b6",
+  "match_id": "894638c8-b8d4-4fde-97d4-9766ec60ec9e",
+  "source_url": "evidence\\demo\\_work\\synthetic-sample.mp4",
+  "sampled_clip": {
+    "path": "evidence\\demo\\_work\\synthetic-sample.mp4",
+    "duration": 12.0,
+    "source_format": "mp4",
+    "sampler_used": "demo"
+  },
+  "fingerprints": {
+    "audio_count": 1,
+    "visual_count": 3
+  },
+  "scores": {
+    "audio_score": 0.97,
+    "visual_score": 0.94,
+    "combined_score": 0.958
+  },
+  "gemini_signal": {
+    "is_sports_content": true,
+    "detected_sport": "cricket",
+    "broadcaster_logos_detected": [
+      "Mock Sports"
+    ],
+    "confidence": 0.92,
+    "raw_response": "{\"is_sports_content\": true}"
+  },
+  "whois": null,
+  "cdn": null
+}

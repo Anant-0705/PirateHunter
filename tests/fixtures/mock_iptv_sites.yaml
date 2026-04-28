@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Free Sports Mirror",
+    "source_url": "https://free-sports-mirror.mock/ipl-live",
+    "title": "Watch IPL live free",
+    "description": "Mock IPTV landing page with live stream embeds",
+    "keywords": ["ipl", "live", "cricket"],
+    "language": "en",
+    "rank": 12034,
+    "is_pirate": true,
+    "confidence_hint": 0.58
+  },
+  {
+    "name": "HD Cricket Links",
+    "source_url": "https://hd-cricket-links.mock/live/ipl",
+    "title": "Cricket HD live links",
+    "description": "Fast-moving fake IPTV links page",
+    "keywords": ["ipl", "cricket", "hd"],
+    "language": "en",
+    "rank": 22001,
+    "is_pirate": true,
+    "confidence_hint": 0.55
+  },
+  {
+    "name": "খেলা লাইভ mock",
+    "source_url": "https://khela-live.mock/bn/cricket",
+    "title": "বাংলা ক্রিকেট লাইভ",
+    "description": "Mock Bengali IPTV page",
+    "keywords": ["cricket", "বাংলা", "live"],
+    "language": "bn",
+    "rank": 33040,
+    "is_pirate": true,
+    "confidence_hint": 0.5
+  },
+  {
+    "name": "Sports Schedule Mock",
+    "source_url": "https://sports-schedule.mock/ipl",
+    "title": "IPL broadcast schedule",
+    "description": "Schedule page with legitimate TV listings",
+    "keywords": ["ipl", "schedule", "broadcast"],
+    "language": "en",
+    "rank": 14000,
+    "is_pirate": false,
+    "confidence_hint": 0.28
+  },
+  {
+    "name": "Official Partner Mock",
+    "source_url": "https://official-partner.mock/cricket",
+    "title": "Official cricket partner news",
+    "description": "Brand-safe news page",
+    "keywords": ["cricket", "news"],
+    "language": "en",
+    "rank": 8000,
+    "is_pirate": false,
+    "confidence_hint": 0.25
+  }
+]
