@@ -1,6 +1,7 @@
 import asyncio
 import uuid
 import datetime
+import json
 from sqlalchemy.ext.asyncio import create_async_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -59,42 +60,44 @@ async def main():
         db.add(verification)
         await db.commit()
 
-    # 3. Push real-time events to Redis so the Dashboard updates instantly via WebSockets!
+    # 3. Push real-time events to Redis STREAMS so the Dashboard updates instantly!
     loc = GeoLocation(lat=28.6139, lng=77.2090, country="IN", country_name="India", city="New Delhi")
     
-    event1 = CandidateDiscovered(
-        match_id=str(match_id),
-        candidate_id=str(candidate_id),
-        platform="youtube",
-        url=candidate.source_url,
-        location=loc,
-        confidence_hint=0.92
-    )
+    # We'll use a generic dict that matches the normalize_event parsing in bridge.py
+    event1_data = {
+        "type": "candidate_discovered",
+        "match_id": str(match_id),
+        "candidate_id": str(candidate_id),
+        "source_platform": "youtube",
+        "source_url": candidate.source_url,
+        "confidence_hint": 0.92
+    }
     
-    event2 = PirateConfirmed(
-        match_id=str(match_id),
-        candidate_id=str(candidate_id),
-        verification_result_id=str(verification.id),
-        platform="youtube",
-        url=candidate.source_url,
-        location=loc,
-        audio_score=0.98,
-        visual_score=0.95,
-        combined_score=0.96,
-        gemini_verdict="Pirate Cricket Stream",
-        detection_latency_ms=1200.0
-    )
+    event2_data = {
+        "type": "pirate_confirmed",
+        "match_id": str(match_id),
+        "candidate_id": str(candidate_id),
+        "verification_result_id": str(verification.id),
+        "source_platform": "youtube",
+        "source_url": candidate.source_url,
+        "audio_score": 0.98,
+        "visual_score": 0.95,
+        "combined_score": 0.96,
+        "gemini_detected_sport": "cricket",
+        "discovered_at": datetime.datetime.utcnow().isoformat()
+    }
 
-    print("📡 Sending CandidateDiscovered Event...")
-    await redis.publish(f"dashboard:events:{match_id}", event1.model_dump_json())
+    print("📡 Pushing CandidateDiscovered to Redis Stream...")
+    await redis.xadd("piratehunt:candidates", {"data": json.dumps(event1_data)})
     
-    await asyncio.sleep(1.5) # Slight delay to see the UI react in two steps
+    await asyncio.sleep(2.0) # Slight delay to see the UI react in two steps
     
-    print("🚨 Sending PirateConfirmed Event...")
-    await redis.publish(f"dashboard:events:{match_id}", event2.model_dump_json())
+    print("🚨 Pushing PirateConfirmed to Redis Stream...")
+    await redis.xadd("piratehunt:verifications", {"data": json.dumps(event2_data)})
 
-    print(f"\n✅ Success! A pirate stream was added to the DB and broadcasted via WebSockets.")
-    print(f"Check your dashboard at http://localhost:3000 to see the new data and globe markers!")
+    print(f"\n✅ Success! A pirate stream was tracked in the DB and pushed to the Redis Event Streams.")
+    print(f"Check your dashboard at http://localhost:3000 to see the updates!")
+
     
 if __name__ == "__main__":
     asyncio.run(main())

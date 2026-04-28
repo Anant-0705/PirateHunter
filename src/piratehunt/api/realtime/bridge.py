@@ -145,9 +145,9 @@ async def run_event_bridge(redis_client: redis.Redis) -> None:
     # Stream names and their consumer groups
     streams = {
         "piratehunt:events": "dashboard:events",
-        "piratehunt:candidates": "dashboard:candidates",
-        "piratehunt:verifications": "dashboard:verifications",
-        "piratehunt:takedowns": "dashboard:takedowns",
+        "piratehunt:candidates": "dashboard:events",
+        "piratehunt:verifications": "dashboard:events",
+        "piratehunt:takedowns": "dashboard:events",
     }
     
     # Create consumer groups if they don't exist
