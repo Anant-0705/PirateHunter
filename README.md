@@ -10,7 +10,7 @@ PirateHunt monitors live sports streams across platforms, uses audio/visual fing
 
 | Tool | Version | Purpose |
 |------|---------|---------|
-| **Python** | 3.11+ | Backend API & workers |
+| **Python** | 3.10+ | Backend API & workers |
 | **Node.js** | 18+ | Dashboard frontend |
 | **Docker Desktop** | Latest | PostgreSQL + Redis |
 | **FFmpeg** | Latest | *(optional)* Video processing |
@@ -21,44 +21,46 @@ PirateHunt monitors live sports streams across platforms, uses audio/visual fing
 
 ### 1. Clone & Configure
 
-```powershell
-git clone https://github.com/Anant-0705/PirateHunter.git
-cd PirateHunter
-
-# Create your environment config
-Copy-Item .env.example .env
-# Edit .env → add your GEMINI_API_KEY (optional)
+**Git Bash:**
+```bash
+cp .env.example .env
 ```
 
 ### 2. Start Database Services
 
-```powershell
+```bash
 docker compose up -d
 ```
 
-This starts **PostgreSQL** (port `5433`) and **Redis** (port `6379`).
-
 ### 3. Setup Backend (Python)
 
-```powershell
-.\setup_venv.ps1
-```
+Create and activate your virtual environment, then install dependencies.
 
-This creates a virtual environment and installs all Python dependencies.
+**Git Bash:**
+```bash
+# 1. Create virtual environment
+python -m venv venv
+
+# 2. Activate venv
+source venv/Scripts/activate
+
+# 3. Upgrade pip and install dependencies
+python -m pip install --upgrade pip
+pip install -e .[dev]
+```
 
 ### 4. Initialize Database
 
-```powershell
-.\venv\Scripts\Activate.ps1
-alembic upgrade head
+**Git Bash:**
+```bash
+python scripts/create_tables.py
 ```
 
 ### 5. Setup Dashboard (Frontend)
 
-```powershell
+```bash
 cd dashboard
 npm install
-Copy-Item .env.local.example .env.local
 cd ..
 ```
 
@@ -70,7 +72,7 @@ You need **3 terminals** for the full system:
 
 ### Terminal 1 — Backend API
 
-```powershell
+```bash
 .\venv\Scripts\Activate.ps1
 python -m piratehunt.api.main --host localhost --port 8000
 ```
@@ -83,7 +85,7 @@ python -m piratehunt.api.main --host localhost --port 8000
 
 ### Terminal 2 — Dashboard Frontend
 
-```powershell
+```bash
 cd dashboard
 npm run dev
 ```
@@ -92,7 +94,7 @@ Dashboard: http://localhost:3000
 
 ### Terminal 3 — Workers *(optional)*
 
-```powershell
+```bash
 .\venv\Scripts\Activate.ps1
 python -m piratehunt.cli worker dmca
 ```
@@ -152,20 +154,20 @@ PirateHunter/
 
 ### Run Tests
 
-```powershell
+```bash
 pytest -v
 ```
 
 ### Code Style
 
-```powershell
+```bash
 black src tests
 ruff check --fix src tests
 ```
 
 ### Run Demo (offline)
 
-```powershell
+```bash
 python scripts/demo.py
 ```
 
