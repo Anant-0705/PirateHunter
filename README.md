@@ -1,198 +1,201 @@
-# PirateHunt
+# 🏴‍☠️ PirateHunt
 
-Real-time live-stream piracy detection system for sports broadcasts. Phase 1 focuses on fingerprinting core and project scaffold.
+**Real-time live-stream piracy detection system for sports broadcasts.**
 
-## Installation
+PirateHunt monitors live sports streams across platforms, uses audio/visual fingerprinting + AI verification to detect unauthorized restreams, and auto-generates DMCA takedown notices — all in real-time.
 
-### Prerequisites
+---
 
-- **Python 3.11+** (required)
-- **Node.js 18+** (required)
-- **Docker** (required for PostgreSQL + Redis)
-- **FFmpeg** (optional, for video processing)
-- **Chromaprint** (optional, for audio fingerprinting)
+## 📋 Prerequisites
 
-### 1. Start Database Services
+| Tool | Version | Purpose |
+|------|---------|---------|
+| **Python** | 3.11+ | Backend API & workers |
+| **Node.js** | 18+ | Dashboard frontend |
+| **Docker Desktop** | Latest | PostgreSQL + Redis |
+| **FFmpeg** | Latest | *(optional)* Video processing |
 
-```bash
+---
+
+## 🚀 Quick Start
+
+### 1. Clone & Configure
+
+```powershell
+git clone https://github.com/Anant-0705/PirateHunter.git
+cd PirateHunter
+
+# Create your environment config
+Copy-Item .env.example .env
+# Edit .env → add your GEMINI_API_KEY (optional)
+```
+
+### 2. Start Database Services
+
+```powershell
 docker compose up -d
 ```
 
-This starts PostgreSQL (port 5433) and Redis (port 6379).
+This starts **PostgreSQL** (port `5433`) and **Redis** (port `6379`).
 
-### 2. Install Backend Dependencies
+### 3. Setup Backend (Python)
 
-**Important:** Use Python 3.11 or higher.
-
-```bash
-pip install -e ".[dev]"
+```powershell
+.\setup_venv.ps1
 ```
 
-### 3. Initialize Database
+This creates a virtual environment and installs all Python dependencies.
 
-```bash
+### 4. Initialize Database
+
+```powershell
+.\venv\Scripts\Activate.ps1
 alembic upgrade head
 ```
 
-### 4. Install Frontend Dependencies
+### 5. Setup Dashboard (Frontend)
 
-```bash
+```powershell
 cd dashboard
 npm install
+Copy-Item .env.local.example .env.local
 cd ..
 ```
 
-### 5. Configure Environment
+---
 
-Edit `.env` and add your Gemini API key (optional):
+## ▶️ Running the System
 
-```env
-GEMINI_API_KEY=your_api_key_here
-```
+You need **3 terminals** for the full system:
 
-## Running the System
+### Terminal 1 — Backend API
 
-### Backend API
-
-```bash
+```powershell
+.\venv\Scripts\Activate.ps1
 python -m piratehunt.api.main --host localhost --port 8000
 ```
 
-API available at: http://localhost:8000
-API Docs: http://localhost:8000/docs
+| Endpoint | URL |
+|----------|-----|
+| API | http://localhost:8000 |
+| Swagger Docs | http://localhost:8000/docs |
+| Health Check | http://localhost:8000/health |
 
-### Frontend Dashboard
+### Terminal 2 — Dashboard Frontend
 
-```bash
+```powershell
 cd dashboard
 npm run dev
 ```
 
-Dashboard available at: http://localhost:3000
+Dashboard: http://localhost:3000
 
-### Workers (Optional)
+### Terminal 3 — Workers *(optional)*
 
-Run in separate terminals:
-
-```bash
-# Discovery worker (finds pirate streams)
-python -m piratehunt.cli worker discovery
-
-# Verification worker (verifies candidates)
-python -m piratehunt.cli worker verification
-
-# DMCA worker (generates takedown notices)
+```powershell
+.\venv\Scripts\Activate.ps1
 python -m piratehunt.cli worker dmca
 ```
 
-## Project Structure
+---
+
+## 📁 Project Structure
 
 ```
-piratehunt/
-├── src/piratehunt/
-│   ├── config.py               # Pydantic settings
-│   ├── fingerprint/            # Fingerprinting core
-│   │   ├── audio.py            # Chromaprint wrapper
-│   │   ├── visual.py           # pHash + dHash
-│   │   ├── extractor.py        # ffmpeg wrapper
-│   │   └── types.py            # Pydantic models
-│   ├── index/                  # Vector indexing
-│   │   ├── faiss_store.py      # Visual hash index
-│   │   └── audio_store.py      # Audio fingerprint store
-│   ├── api/
-│   │   ├── app.py              # FastAPI application
-│   │   ├── routers/            # API endpoints
+PirateHunter/
+├── src/piratehunt/              # Python backend
+│   ├── api/                     # FastAPI app + routers
+│   │   ├── app.py               # FastAPI application
+│   │   ├── routers/             # REST endpoints
 │   │   │   ├── health.py
 │   │   │   ├── matches.py
 │   │   │   ├── discovery.py
 │   │   │   ├── verification.py
 │   │   │   ├── takedowns.py
 │   │   │   ├── rights_holders.py
-│   │   │   └── dashboard.py    # Aggregation endpoints (Phase 6)
-│   │   └── realtime/           # WebSocket bridge (Phase 6)
-│   │       ├── types.py        # Event types
-│   │       ├── bridge.py       # Redis → WebSocket
-│   │       ├── manager.py      # Connection management
-│   │       ├── geolocation.py  # URL → location lookup
-│   │       └── endpoint.py     # WebSocket endpoint
-│   ├── dmca/                   # DMCA notice generation (Phase 5)
-│   ├── db/                     # Database models
-│   └── cli.py                  # Command-line interface
-├── dashboard/                  # Next.js frontend (Phase 6)
-│   ├── app/                    # Next.js App Router
-│   │   ├── layout.tsx
-│   │   ├── page.tsx            # Main dashboard
-│   │   └── globals.css
-│   ├── components/             # React components
-│   ├── lib/                    # Utilities
-│   │   ├── store.ts            # Zustand state
-│   │   ├── ws.ts               # WebSocket client
-│   │   ├── api.ts              # Fetch wrappers
-│   │   └── types.ts            # TypeScript types
-│   ├── styles/
-│   ├── package.json
-│   └── tsconfig.json
-├── tests/                      # Pytest suite
-├── docker-compose.yml          # Services
-├── pyproject.toml              # Project config
-├── PHASE6_BUILD.md             # Phase 6 build summary
-└── README.md
+│   │   │   └── dashboard.py     # Aggregation endpoints
+│   │   └── realtime/            # WebSocket bridge (Redis → clients)
+│   ├── fingerprint/             # Audio (Chromaprint) + Visual (pHash/dHash)
+│   ├── index/                   # FAISS vector store + audio store
+│   ├── agents/                  # Detection agent orchestration
+│   ├── ingestion/               # Stream ingestion pipeline
+│   ├── verification/            # AI verification + evidence collection
+│   ├── dmca/                    # DMCA notice generation + tracking
+│   ├── db/                      # SQLAlchemy models + repository
+│   ├── config.py                # Pydantic settings
+│   └── cli.py                   # CLI entry point
+│
+├── dashboard/                   # Next.js 14 frontend
+│   ├── app/                     # App Router (layout, page)
+│   ├── components/              # React components
+│   ├── lib/                     # Zustand store, WebSocket, API client
+│   └── styles/                  # Tailwind CSS
+│
+├── tests/                       # Pytest test suite
+├── scripts/                     # Utility scripts
+│   ├── demo.py                  # End-to-end demo
+│   ├── simulate_dashboard.py    # Push mock events to dashboard
+│   └── create_tables.py         # Direct table creation (no Alembic)
+│
+├── alembic/                     # Database migrations
+├── docker-compose.yml           # PostgreSQL + Redis
+├── pyproject.toml               # Python project config
+├── requirements.txt             # Python dependencies
+├── setup_venv.ps1               # Backend setup (PowerShell)
+├── .env.example                 # Environment template
+└── .gitignore
 ```
 
-## Project Phases
+---
 
-### Phase 1 ✅
-- ✅ Project scaffold and dependencies
-- ✅ Audio fingerprinting with Chromaprint
-- ✅ Visual fingerprinting (pHash + dHash)
-- ✅ Media extraction (ffmpeg integration)
-- ✅ In-memory fingerprint indices
-- ✅ Health check endpoint
+## 🧪 Development
 
-### Phase 2-5 ✅
-- ✅ Database persistence (PostgreSQL + SQLAlchemy)
-- ✅ Ingestion endpoints and candidate streams
-- ✅ Streaming verification pipelines
-- ✅ Detection agents with audio/visual scoring
-- ✅ DMCA notice generation and takedown tracking
-- ✅ Rights holder management
+### Run Tests
 
-### Phase 6 ✅ (JUST COMPLETED)
-- ✅ WebSocket real-time event bridge (Redis → clients)
-- ✅ Dashboard aggregation endpoints (summary, timeline, pirates, funnel)
-- ✅ Next.js 14 frontend with dark theme
-- ✅ Live event feed, 3D globe visualization, takedown funnel
-- ✅ Zustand state management + auto-reconnecting WebSocket client
-- ✅ Revenue loss estimation + real-time metrics
-
-### Planned for Future Phases
-
-- Mock event generator for offline demos
-- Full deck.gl 3D globe with animated pins (currently placeholder)
-- Frontend unit tests (Vitest + React Testing Library)
-- Screenshot automation for demo documentation
-- Platform-specific crawlers (YouTube, Telegram, Discord, etc.)
-- Automated DMCA submission to hosting providers
-
-## Development
+```powershell
+pytest -v
+```
 
 ### Code Style
 
-```bash
+```powershell
 black src tests
 ruff check --fix src tests
 ```
 
-### Running Tests
+### Run Demo (offline)
 
-```bash
-pytest -v
+```powershell
+python scripts/demo.py
 ```
 
-### Type Checking
+---
 
-All code uses full type hints with `from __future__ import annotations`.
+## 🏗️ Architecture
 
-## License
+```
+                    ┌─────────────┐
+                    │  Dashboard  │ (Next.js)
+                    │  :3000      │
+                    └──────┬──────┘
+                           │ WebSocket + REST
+                    ┌──────┴──────┐
+                    │  FastAPI    │
+                    │  :8000      │
+                    └──┬───┬───┬──┘
+                       │   │   │
+              ┌────────┘   │   └────────┐
+              │            │            │
+        ┌─────┴─────┐ ┌───┴────┐ ┌─────┴──────┐
+        │ PostgreSQL │ │ Redis  │ │ Gemini API │
+        │ + pgvector │ │        │ │ (optional) │
+        └────────────┘ └────────┘ └────────────┘
+```
+
+**Pipeline:** Discover → Ingest → Fingerprint → Verify (AI) → DMCA → Takedown
+
+---
+
+## 📄 License
 
 MIT
